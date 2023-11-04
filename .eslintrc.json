@@ -1,7 +1,14 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx", "unused-imports", "simple-import-sort", "import"],
+  "plugins": [
+    "@nx",
+    "unused-imports",
+    "simple-import-sort",
+    "import",
+    "prettier"
+  ],
+  "extends": ["plugin:prettier/recommended"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -48,6 +55,7 @@
     "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
-    "import/no-duplicates": "error"
+    "import/no-duplicates": "error",
+    "prettier/prettier": "error"
   }
 }
