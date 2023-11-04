@@ -2,12 +2,17 @@
   "name": "@taskify/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky install",
+    "commitlint": "commitlint --edit"
+  },
   "private": true,
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
     "@nx/eslint": "17.0.3",
     "@nx/eslint-plugin": "17.0.3",
     "@nx/js": "17.0.3",
@@ -23,6 +28,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
+    "husky": "^8.0.3",
     "nx": "17.0.3",
     "prettier": "^3.0.3",
     "typescript": "~5.1.3"
