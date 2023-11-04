@@ -26,6 +26,8 @@
     "@commitlint/config-conventional": "^18.1.0",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.2",
+    "@nx-tools/container-metadata": "^5.1.0",
+    "@nx-tools/nx-container": "^5.1.0",
     "@nx/eslint": "17.0.3",
     "@nx/eslint-plugin": "17.0.3",
     "@nx/jest": "17.0.3",
