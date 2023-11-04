@@ -79,6 +79,12 @@
           ]
         }
       }
+    },
+    "local-environment": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker compose -f apps/users-apis/docker/docker-compose.yml up"
+      }
     }
   },
   "tags": []

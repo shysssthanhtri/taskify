@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  users-apis-db:
+    image: mysql:latest
+    env_file:
+      - ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - ${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}
