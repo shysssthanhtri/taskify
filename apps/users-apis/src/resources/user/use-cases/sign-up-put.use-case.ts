@@ -1,4 +1,4 @@
-import { BaseRequestUseCase } from '../../app/use-cases/base-request.use-case';
+import { BaseRequestUseCase } from '../../../app/use-cases/base-request.use-case';
 import { SignUpPutRequestDto } from './sign-up-put-request.dto';
 import { SignUpPutResponseDto } from './sign-up-put-response.dto';
 
