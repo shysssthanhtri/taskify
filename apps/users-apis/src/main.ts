@@ -9,7 +9,7 @@ import { SwaggerModule } from '@nestjs/swagger';
 import { UserContract } from '@taskify/users-contracts';
 import { generateOpenApi } from '@ts-rest/open-api';
 
-import { AppModule } from './app/app.module';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,12 +17,18 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT ?? 3000;
 
-  const document = generateOpenApi(UserContract, {
-    info: {
-      title: 'Users APIs',
-      version: '1.0.0',
+  const document = generateOpenApi(
+    UserContract,
+    {
+      info: {
+        title: 'Users APIs',
+        version: '1.0.0',
+      },
     },
-  });
+    {
+      setOperationId: true,
+    },
+  );
 
   SwaggerModule.setup([globalPrefix, 'docs'].join('/'), app, document);
 
