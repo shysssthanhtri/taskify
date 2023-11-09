@@ -7,6 +7,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
 import { UserContract } from '@taskify/users-contracts';
+import { initContract } from '@ts-rest/core';
 import { generateOpenApi } from '@ts-rest/open-api';
 
 import { AppModule } from './app.module';
@@ -17,8 +18,16 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT ?? 3000;
 
+  const c = initContract();
   const document = generateOpenApi(
-    UserContract,
+    c.router(
+      {
+        users: UserContract,
+      },
+      {
+        pathPrefix: `/${globalPrefix}`,
+      },
+    ),
     {
       info: {
         title: 'Users APIs',
