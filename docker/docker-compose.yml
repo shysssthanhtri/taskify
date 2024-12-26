@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  mysql:
+    container_name: taskify-postgres
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=shyss
+      - POSTGRES_PASSWORD=shyss
+      - POSTGRES_DB=taskify
+    ports:
+      - 5432:5432
