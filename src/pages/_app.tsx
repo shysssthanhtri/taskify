@@ -6,6 +6,7 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
 import { AuthGuard } from "@/components/common/auth-guard";
+import { PayLayout } from "@/components/common/page-layout";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import { cn } from "@/lib/utils";
 import { api } from "@/utils/api";
@@ -24,7 +25,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
           disableTransitionOnChange
         >
           <AuthGuard>
-            <Component {...pageProps} />
+            <PayLayout>
+              <Component {...pageProps} />
+            </PayLayout>
           </AuthGuard>
         </ThemeProvider>
       </main>
