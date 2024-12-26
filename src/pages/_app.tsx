@@ -5,7 +5,8 @@ import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
-import { ThemeProvider } from "@/components/theme-provider";
+import { AuthGuard } from "@/components/common/auth-guard";
+import { ThemeProvider } from "@/components/common/theme-provider";
 import { cn } from "@/lib/utils";
 import { api } from "@/utils/api";
 
@@ -22,7 +23,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
           enableSystem
           disableTransitionOnChange
         >
-          <Component {...pageProps} />
+          <AuthGuard>
+            <Component {...pageProps} />
+          </AuthGuard>
         </ThemeProvider>
       </main>
     </SessionProvider>
