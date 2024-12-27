@@ -17,10 +17,10 @@ import {
 } from "@/components/ui/sidebar";
 import { type TTeamEntity } from "@/entities/team.entity";
 
-interface TeamSwitcherProps {
+interface TeamsSwitcherProps {
   teams: Pick<TTeamEntity, "id" | "name">[];
 }
-export const TeamSwitcher = ({ teams }: TeamSwitcherProps) => {
+export const TeamsSwitcher = ({ teams }: TeamsSwitcherProps) => {
   const activeTeam = teams[0];
   const { isMobile } = useSidebar();
 

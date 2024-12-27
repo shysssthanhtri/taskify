@@ -2,7 +2,7 @@ import React from "react";
 
 import { BoardsNav } from "@/components/common/page-layout/boards-nav";
 import { ProjectsNav } from "@/components/common/page-layout/projects-nav";
-import { TeamSwitcher } from "@/components/common/page-layout/team-switcher";
+import { TeamsSwitcher } from "@/components/common/page-layout/teams-switcher";
 import { UserNav } from "@/components/common/page-layout/user-nav";
 import {
   Sidebar,
@@ -17,7 +17,7 @@ export const AppSidebar = (props: AppSidebarProps) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher
+        <TeamsSwitcher
           teams={[
             {
               id: "1",
