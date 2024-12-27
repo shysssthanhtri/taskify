@@ -18,8 +18,9 @@ export const SettingsPageLayout = ({ children }: SettingsPageLayoutProps) => {
         </p>
       </div>
       <Separator />
-      <div className="flex">
+      <div className="flex gap-x-8">
         <SettingsPageSidebar />
+        {children}
       </div>
     </div>
   );
