@@ -1,7 +1,7 @@
-import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React from "react";
 
+import { LoadingPage } from "@/components/common/loading-page";
 import { AuthPage } from "@/page-implementations/auth";
 
 interface AuthGuardProps {
@@ -11,12 +11,7 @@ export const AuthGuard = ({ children }: AuthGuardProps) => {
   const { status } = useSession();
 
   if (status === "loading") {
-    return (
-      <div className="flex h-screen flex-col items-center justify-center gap-2">
-        <Loader2 className="h-8 w-8 animate-spin" />
-        Authenticating
-      </div>
-    );
+    return <LoadingPage message="Authenticating" />;
   }
 
   if (status === "unauthenticated") return <AuthPage />;
