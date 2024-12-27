@@ -1,9 +1,12 @@
 import React from "react";
 
+import { BoardsNav } from "@/components/common/page-layout/boards-nav";
+import { ProjectsNav } from "@/components/common/page-layout/projects-nav";
 import { TeamSwitcher } from "@/components/common/page-layout/team-switcher";
 import { UserNav } from "@/components/common/page-layout/user-nav";
 import {
   Sidebar,
+  SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
@@ -31,6 +34,10 @@ export const AppSidebar = (props: AppSidebarProps) => {
           ]}
         />
       </SidebarHeader>
+      <SidebarContent>
+        <BoardsNav />
+        <ProjectsNav />
+      </SidebarContent>
       <SidebarFooter>
         <UserNav />
       </SidebarFooter>
