@@ -8,7 +8,7 @@ export const Routes = {
     id: (teamId: string) => `/teams/${teamId}`,
   },
   projects: {
-    id: (teamId: string, projectId: string) =>
-      `/teams/${teamId}/projects/${projectId}`,
+    kanban: (teamId: string, projectId: string) =>
+      `/teams/${teamId}/projects/${projectId}/kanban`,
   },
 } as const;
