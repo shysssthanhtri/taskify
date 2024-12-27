@@ -5,7 +5,10 @@ export const Routes = {
     appearance: "/settings/appearance",
   },
   teams: {
-    home: "/teams",
     id: (teamId: string) => `/teams/${teamId}`,
+  },
+  projects: {
+    id: (teamId: string, projectId: string) =>
+      `/teams/${teamId}/projects/${projectId}`,
   },
 } as const;

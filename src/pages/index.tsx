@@ -1,15 +1,37 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 import { LoadingPage } from "@/components/common/loading-page";
 import { Routes } from "@/config/routes";
+import { CreateTeamDialog } from "@/page-implementations/boards/shared/dialogs/create-team.dialog";
+import { api } from "@/utils/api";
 
 export default function Home() {
   const router = useRouter();
+  const { data: session } = useSession();
+  const {
+    data: teams = [],
+    refetch,
+    isFetched,
+  } = api.team.get.useQuery(undefined, {
+    enabled: !!session?.user,
+  });
+  const { mutate, isPending } = api.team.create.useMutation({
+    onSuccess: () => refetch(),
+  });
+
   useEffect(() => {
-    void router.push(Routes.teams.home);
-  }, [router]);
+    const team = teams[0];
+    if (team) {
+      void router.push(Routes.teams.id(team.id));
+    }
+  }, [teams, router]);
+
+  if (!teams.length && isFetched) {
+    return <CreateTeamDialog open isPending={isPending} onSubmit={mutate} />;
+  }
 
   return (
     <>
