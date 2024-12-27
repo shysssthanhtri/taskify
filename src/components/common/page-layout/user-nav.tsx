@@ -1,4 +1,5 @@
-import { BadgeCheck, Bell, ChevronsUpDown, LogOut } from "lucide-react";
+import { Bell, ChevronsUpDown, LogOut, User } from "lucide-react";
+import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import React, { useMemo } from "react";
 
@@ -18,6 +19,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Routes } from "@/config/routes";
 
 export const UserNav = () => {
   const { isMobile } = useSidebar();
@@ -72,10 +74,12 @@ export const UserNav = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
+              <Link href={Routes.settings.profile}>
+                <DropdownMenuItem>
+                  <User />
+                  Profile
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <Bell />
                 Notifications
