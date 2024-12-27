@@ -71,7 +71,6 @@ export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
           <FormField
             control={form.control}
             name="name"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
@@ -80,6 +79,7 @@ export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
                     placeholder="Your name"
                     {...field}
                     value={field.value ?? ""}
+                    disabled={isPending}
                   />
                 </FormControl>
                 <FormDescription>Your display name.</FormDescription>
@@ -91,7 +91,6 @@ export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
           <FormField
             control={form.control}
             name="alias"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Alias</FormLabel>
@@ -100,6 +99,7 @@ export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
                     placeholder="Your alias name"
                     {...field}
                     value={field.value ?? ""}
+                    disabled={isPending}
                   />
                 </FormControl>
                 <FormDescription>

@@ -1,3 +1,4 @@
+import { Loader2 } from "lucide-react";
 import React from "react";
 
 import { Separator } from "@/components/ui/separator";
@@ -5,8 +6,12 @@ import { SettingsPageSidebar } from "@/page-implementations/settings/shared/sett
 
 interface SettingsPageLayoutProps {
   children: React.ReactNode;
+  isLoading?: boolean;
 }
-export const SettingsPageLayout = ({ children }: SettingsPageLayoutProps) => {
+export const SettingsPageLayout = ({
+  children,
+  isLoading,
+}: SettingsPageLayoutProps) => {
   return (
     <div className="container mx-auto space-y-6 p-10">
       <div className="space-y-0.5">
@@ -20,7 +25,14 @@ export const SettingsPageLayout = ({ children }: SettingsPageLayoutProps) => {
       <Separator />
       <div className="flex gap-x-8">
         <SettingsPageSidebar />
-        <div className="flex flex-1 flex-col gap-y-4">{children}</div>
+        <div className="flex flex-1 flex-col gap-y-4">
+          {isLoading && (
+            <div className="flex justify-center">
+              <Loader2 className="h-8 w-8 animate-spin" />
+            </div>
+          )}
+          {!isLoading && children}
+        </div>
       </div>
     </div>
   );

@@ -7,24 +7,40 @@ import {
   type ProfileFormRef,
 } from "@/page-implementations/settings/profile/forms/profile.form";
 import { SettingsPageLayout } from "@/page-implementations/settings/settings-page-layout";
+import { api } from "@/utils/api";
 
 export const SettingsProfile = () => {
   const { data } = useSession();
   const ref = useRef<ProfileFormRef>(null);
-
-  const user = data?.user;
-  if (!user) return null;
+  const {
+    data: user,
+    isLoading,
+    refetch,
+  } = api.profile.get.useQuery(undefined, {
+    enabled: !!data?.user,
+  });
+  const { mutate, isPending } = api.profile.update.useMutation({
+    onSuccess: () => refetch(),
+  });
 
   return (
-    <SettingsPageLayout>
-      <ProfileForm
-        ref={ref}
-        user={user}
-        onSubmit={(value) => {
-          console.log(value);
-        }}
-      />
-      <ButtonLoading onClick={() => ref.current?.submit()}>Save</ButtonLoading>
+    <SettingsPageLayout isLoading={isLoading}>
+      {!!user && (
+        <>
+          <ProfileForm
+            ref={ref}
+            user={user}
+            onSubmit={mutate}
+            isPending={isPending}
+          />
+          <ButtonLoading
+            onClick={() => ref.current?.submit()}
+            isLoading={isPending}
+          >
+            Save
+          </ButtonLoading>
+        </>
+      )}
     </SettingsPageLayout>
   );
 };
