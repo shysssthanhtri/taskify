@@ -6,6 +6,10 @@ export const Metadata = {
       profile: "Settings - Profile",
       appearance: "Settings - Appearance",
     },
+    board: {
+      team: "Teams page",
+      project: "Projects page",
+    },
   },
   name: "Taskify",
   description: "Managing your tasks.",
