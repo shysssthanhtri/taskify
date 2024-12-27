@@ -1,7 +1,13 @@
 import React from "react";
 
 import { TeamSwitcher } from "@/components/common/page-layout/team-switcher";
-import { Sidebar, SidebarHeader } from "@/components/ui/sidebar";
+import { UserNav } from "@/components/common/page-layout/user-nav";
+import {
+  Sidebar,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar";
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar>;
 export const AppSidebar = (props: AppSidebarProps) => {
@@ -25,6 +31,10 @@ export const AppSidebar = (props: AppSidebarProps) => {
           ]}
         />
       </SidebarHeader>
+      <SidebarFooter>
+        <UserNav />
+      </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   );
 };
