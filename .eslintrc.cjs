@@ -12,6 +12,7 @@ const config = {
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
     "plugin:prettier/recommended",
+    "prettier",
   ],
   rules: {
     "@typescript-eslint/array-type": "off",
