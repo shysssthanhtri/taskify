@@ -2,6 +2,10 @@ export const Metadata = {
   title: {
     authentication: "Authentication Page",
     home: "Taskify",
+    settings: {
+      profile: "Settings - Profile",
+      appearance: "Settings - Appearance",
+    },
   },
   name: "Taskify",
   description: "Managing your tasks.",

@@ -1,7 +1,10 @@
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 import { Separator } from "@/components/ui/separator";
+import { Metadata } from "@/config/metadata";
+import { Routes } from "@/config/routes";
 import { SettingsPageSidebar } from "@/page-implementations/settings/shared/settings-page-sidebar";
 
 interface SettingsPageLayoutProps {
@@ -15,6 +18,9 @@ export const SettingsPageLayout = ({
   return (
     <div className="container mx-auto space-y-6 p-10">
       <div className="space-y-0.5">
+        <Link href={Routes.home} className="text-sm hover:underline">
+          Back to {Metadata.name}
+        </Link>
         <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
         <p className="text-muted-foreground">
           Manage your personal profile.
