@@ -10,12 +10,7 @@ import { api } from "@/utils/api";
 const TeamsPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
-  const {
-    data: teams = [],
-    isFetched,
-    isFetching,
-    refetch,
-  } = api.team.get.useQuery(undefined, {
+  const { data: teams = [], refetch } = api.team.get.useQuery(undefined, {
     enabled: !!session?.user,
   });
   const { mutate, isPending } = api.team.create.useMutation({
@@ -28,10 +23,6 @@ const TeamsPage = () => {
       void router.push(Routes.teams.id(team.id));
     }
   }, [teams, router]);
-
-  if (!isFetched || isFetching) {
-    return <LoadingPage message="Loading teams" />;
-  }
 
   if (!teams.length) {
     return <CreateTeamDialog open isPending={isPending} onSubmit={mutate} />;
