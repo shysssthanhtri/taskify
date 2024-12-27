@@ -1,9 +1,5 @@
 import React from "react";
 
-import { BoardsNav } from "@/components/common/page-layout/boards-nav";
-import { ProjectsNav } from "@/components/common/page-layout/projects-nav";
-import { TeamsSwitcher } from "@/components/common/page-layout/teams-switcher";
-import { UserNav } from "@/components/common/page-layout/user-nav";
 import { Separator } from "@/components/ui/separator";
 import {
   Sidebar,
@@ -12,6 +8,10 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { BoardsNav } from "@/page-implementations/boards/shared/layouts/boards-nav";
+import { ProjectsNav } from "@/page-implementations/boards/shared/layouts/projects-nav";
+import { TeamsSwitcher } from "@/page-implementations/boards/shared/layouts/teams-switcher";
+import { UserNav } from "@/page-implementations/boards/shared/layouts/user-nav";
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar>;
 export const AppSidebar = (props: AppSidebarProps) => {

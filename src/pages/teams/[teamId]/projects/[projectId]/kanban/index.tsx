@@ -1,9 +1,9 @@
 import React from "react";
 
-import { BoardGuard } from "@/page-implementations/boards/guards/board.guard";
+import { KanbanPageImpl } from "@/page-implementations/boards/kanban";
 
 const KanbanPage = () => {
-  return <BoardGuard>KanbanPage</BoardGuard>;
+  return <KanbanPageImpl />;
 };
 
 export default KanbanPage;
