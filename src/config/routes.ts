@@ -4,4 +4,8 @@ export const Routes = {
     profile: "/settings/profile",
     appearance: "/settings/appearance",
   },
+  teams: {
+    home: "/teams",
+    id: (teamId: string) => `/teams/${teamId}`,
+  },
 } as const;
