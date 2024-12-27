@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import React from "react";
 
 import { LoadingPage } from "@/components/common/loading-page";
+import { CreateTeamDialog } from "@/page-implementations/boards/shared/dialogs/create-team.dialog";
 import { api } from "@/utils/api";
 
 interface TeamsGuardProps {
@@ -13,8 +14,12 @@ export const TeamsGuard = ({ children }: TeamsGuardProps) => {
     data: teams = [],
     isFetched,
     isFetching,
+    refetch,
   } = api.team.get.useQuery(undefined, {
     enabled: !!session?.user,
+  });
+  const { mutate, isPending } = api.team.create.useMutation({
+    onSuccess: () => refetch(),
   });
 
   if (!isFetched || isFetching) {
@@ -22,7 +27,7 @@ export const TeamsGuard = ({ children }: TeamsGuardProps) => {
   }
 
   if (!teams.length) {
-    return <>Empty</>;
+    return <CreateTeamDialog open isPending={isPending} onSubmit={mutate} />;
   }
   return <>{children}</>;
 };

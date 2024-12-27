@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { UserEntity } from "@/entities/user.entity";
 
 interface ProfileFormProps {
-  user: z.infer<typeof formSchema>;
+  user: FormSchema;
   isPending?: boolean;
   onSubmit?: (value: FormSchema) => void;
 }

@@ -2,8 +2,6 @@ import { z } from "zod";
 
 import type { AccountWithRelations } from "./AccountSchema";
 import { AccountWithRelationsSchema } from "./AccountSchema";
-import type { PostWithRelations } from "./PostSchema";
-import { PostWithRelationsSchema } from "./PostSchema";
 import type { ProjectMemberWithRelations } from "./ProjectMemberSchema";
 import { ProjectMemberWithRelationsSchema } from "./ProjectMemberSchema";
 import type { SessionWithRelations } from "./SessionSchema";
@@ -33,7 +31,6 @@ export type User = z.infer<typeof UserSchema>;
 export type UserRelations = {
   accounts: AccountWithRelations[];
   sessions: SessionWithRelations[];
-  posts: PostWithRelations[];
   teams: TeamMemberWithRelations[];
   projects: ProjectMemberWithRelations[];
 };
@@ -45,7 +42,6 @@ export const UserWithRelationsSchema: z.ZodType<UserWithRelations> =
     z.object({
       accounts: z.lazy(() => AccountWithRelationsSchema).array(),
       sessions: z.lazy(() => SessionWithRelationsSchema).array(),
-      posts: z.lazy(() => PostWithRelationsSchema).array(),
       teams: z.lazy(() => TeamMemberWithRelationsSchema).array(),
       projects: z.lazy(() => ProjectMemberWithRelationsSchema).array(),
     }),
