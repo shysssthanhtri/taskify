@@ -4,6 +4,7 @@ import { BoardsNav } from "@/components/common/page-layout/boards-nav";
 import { ProjectsNav } from "@/components/common/page-layout/projects-nav";
 import { TeamsSwitcher } from "@/components/common/page-layout/teams-switcher";
 import { UserNav } from "@/components/common/page-layout/user-nav";
+import { Separator } from "@/components/ui/separator";
 import {
   Sidebar,
   SidebarContent,
@@ -36,9 +37,25 @@ export const AppSidebar = (props: AppSidebarProps) => {
       </SidebarHeader>
       <SidebarContent>
         <BoardsNav />
-        <ProjectsNav />
       </SidebarContent>
       <SidebarFooter>
+        <ProjectsNav
+          projects={[
+            {
+              id: "1",
+              name: "Project 1",
+            },
+            {
+              id: "2",
+              name: "Project 2",
+            },
+            {
+              id: "3",
+              name: "Project 3",
+            },
+          ]}
+        />
+        <Separator />
         <UserNav />
       </SidebarFooter>
       <SidebarRail />
