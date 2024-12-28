@@ -34,7 +34,7 @@ export const BoardGuard = ({ children }: BoardGuardProps) => {
   );
 
   if (!isFetched || isFetching) {
-    return <LoadingPage message="Checking permission" />;
+    return <LoadingPage message="Checking project permission" />;
   }
 
   if (!canAccess) {

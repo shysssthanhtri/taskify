@@ -19,11 +19,14 @@ export default function Home() {
         <title>{Metadata.title.home}</title>
         <meta name="description" content={Metadata.description} />
       </Head>
-      {isLoading || !!teams.length ? (
+      <>
         <LoadingPage message="Loading teams" />
-      ) : (
-        <CreateTeamDialog open isPending={isCreating} onSubmit={create} />
-      )}
+        <CreateTeamDialog
+          open={!isLoading && !teams.length}
+          isPending={isCreating}
+          onSubmit={create}
+        />
+      </>
     </>
   );
 }
