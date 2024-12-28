@@ -9,7 +9,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { BoardsNav } from "@/page-implementations/boards/shared/layouts/boards-nav";
-import { ProjectsNav } from "@/page-implementations/boards/shared/layouts/projects-nav";
+import { TeamsSelect } from "@/page-implementations/boards/shared/layouts/teams-select";
 import { TeamsSwitcher } from "@/page-implementations/boards/shared/layouts/teams-switcher";
 import { UserNav } from "@/page-implementations/boards/shared/layouts/user-nav";
 
@@ -39,22 +39,7 @@ export const AppSidebar = (props: AppSidebarProps) => {
         <BoardsNav />
       </SidebarContent>
       <SidebarFooter>
-        <ProjectsNav
-          projects={[
-            {
-              id: "1",
-              name: "Project 1",
-            },
-            {
-              id: "2",
-              name: "Project 2",
-            },
-            {
-              id: "3",
-              name: "Project 3",
-            },
-          ]}
-        />
+        <TeamsSelect />
         <Separator />
         <UserNav />
       </SidebarFooter>
