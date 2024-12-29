@@ -1,4 +1,5 @@
 import { type Prisma, ProjectMemberRole } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { ProjectEntity } from "@/entities/project.entity";
@@ -9,12 +10,15 @@ export const projectRouter = createTRPCRouter({
     .input(z.object(ProjectEntity.shape).pick({ teamId: true }))
     .query(({ ctx, input }) => {
       return ctx.db.$transaction(async (tx) => {
-        const teamRole = await tx.teamMember.findFirstOrThrow({
+        const teamRole = await tx.teamMember.findFirst({
           where: {
             userId: ctx.session.user.id,
             teamId: input.teamId,
           },
         });
+        if (!teamRole) {
+          throw new TRPCError({ code: "UNAUTHORIZED" });
+        }
 
         const where: Prisma.ProjectWhereInput = {
           teamId: input.teamId,
