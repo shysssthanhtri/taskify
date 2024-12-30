@@ -1,22 +1,22 @@
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import { useCallback, useMemo } from "react";
 
 import { Routes } from "@/config/routes";
 import { TeamEntity } from "@/entities/team.entity";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { api } from "@/utils/api";
 
 export const useTeams = () => {
   const router = useRouter();
 
-  const { data: session } = useSession();
+  const { user } = useCurrentUser();
   const {
     data: teams = [],
     refetch,
     isFetched,
     isFetching,
   } = api.team.get.useQuery(undefined, {
-    enabled: !!session?.user,
+    enabled: !!user,
   });
 
   const { mutate, isPending } = api.team.create.useMutation({

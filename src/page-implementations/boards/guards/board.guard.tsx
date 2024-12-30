@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import React, { useMemo } from "react";
 
 import { ForbiddenPage } from "@/components/common/forbidden-page";
 import { LoadingPage } from "@/components/common/loading-page";
 import { ProjectEntity } from "@/entities/project.entity";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { api } from "@/utils/api";
 
 interface BoardGuardProps {
@@ -12,7 +12,7 @@ interface BoardGuardProps {
 }
 export const BoardGuard = ({ children }: BoardGuardProps) => {
   const { query } = useRouter();
-  const { data: session } = useSession();
+  const { user } = useCurrentUser();
 
   const { id: projectId, teamId } = useMemo(() => {
     return ProjectEntity.pick({ id: true, teamId: true }).parse({
@@ -30,7 +30,7 @@ export const BoardGuard = ({ children }: BoardGuardProps) => {
       id: projectId,
       teamId,
     },
-    { enabled: !!session?.user },
+    { enabled: !!user },
   );
 
   if (!isFetched || isFetching) {

@@ -12,16 +12,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { ImageInput } from "@/components/ui/image-input";
 import { Input } from "@/components/ui/input";
 import { UserEntity } from "@/entities/user.entity";
 
-interface ProfileFormProps {
+export interface ProfileFormProps {
   user: FormSchema;
   isPending?: boolean;
   onSubmit?: (value: FormSchema) => void;
 }
 export type ProfileFormRef = {
   submit: () => void;
+  reset: () => void;
 };
 export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
   ({ user, isPending, onSubmit }: ProfileFormProps, ref) => {
@@ -44,6 +46,9 @@ export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
         submit: () => {
           void form.handleSubmit(handleSubmit)();
         },
+        reset: () => {
+          form.reset();
+        },
       }),
       [form, handleSubmit],
     );
@@ -54,6 +59,20 @@ export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
           onSubmit={form.handleSubmit(handleSubmit)}
           className="w-full space-y-4"
         >
+          <FormField
+            control={form.control}
+            name="image"
+            disabled
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Avatar</FormLabel>
+                <FormControl>
+                  <ImageInput value={field.value} onChange={field.onChange} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="email"
@@ -118,9 +137,14 @@ export const ProfileForm = forwardRef<ProfileFormRef, ProfileFormProps>(
 
 ProfileForm.displayName = "ProfileForm";
 
-const formSchema = z.object(UserEntity.shape).pick({
-  name: true,
-  email: true,
-  alias: true,
-});
+const formSchema = z
+  .object(UserEntity.shape)
+  .pick({
+    name: true,
+    email: true,
+    alias: true,
+  })
+  .extend({
+    image: z.union([z.string(), z.instanceof(File), z.null()]),
+  });
 type FormSchema = z.infer<typeof formSchema>;

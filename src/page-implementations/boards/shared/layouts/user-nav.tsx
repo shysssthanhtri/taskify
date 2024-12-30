@@ -1,6 +1,6 @@
 import { Bell, ChevronsUpDown, LogOut, User } from "lucide-react";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import React, { useMemo } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,11 +20,12 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Routes } from "@/config/routes";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 export const UserNav = () => {
   const { isMobile } = useSidebar();
-  const { data: session } = useSession();
-  const user = session?.user;
+
+  const { user } = useCurrentUser();
 
   const userInfo = useMemo(() => {
     if (!user) return null;
@@ -33,9 +34,9 @@ export const UserNav = () => {
         <Avatar className="h-8 w-8 rounded-lg">
           <AvatarImage
             src={user.image ?? ""}
-            alt={user.name ?? user.email ?? user.id}
+            alt={user.alias ?? user.name ?? user.email ?? user.id}
           />
-          <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+          <AvatarFallback className="rounded-lg">{user.alias}</AvatarFallback>
         </Avatar>
         <div className="grid flex-1 text-left text-sm leading-tight">
           <span className="truncate font-semibold">{user.name}</span>
